@@ -2,8 +2,12 @@ body {
   padding: 50px;
   font: 16px "Avenir", Helvetica, Arial, sans-serif;
   letter-spacing: 0.25em;
+  background-color: lightblue;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
 }
