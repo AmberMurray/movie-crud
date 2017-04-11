@@ -1,13 +1,24 @@
 body {
-  padding: 50px;
-  font: 16px "Avenir", Helvetica, Arial, sans-serif;
+  padding: 0 50px;
+  font: 16px "American Typewriter", Helvetica, Arial, sans-serif;
   letter-spacing: 0.25em;
-  background-color: lightblue;
+  background-color: #8e9196;
 }
 
 a {
-  color: #00B7FF;
+  color: #1f4687;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
+}
+
+.table {
+  width: 80%;
+  margin: 50px auto 0;
+}
+
+.btn {
+  float: right;
+  margin-right: 100px;
+  display: inline-block;
 }
