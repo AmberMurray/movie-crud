@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//these are the scripts we use to run the server
 
 /**
  * Module dependencies.

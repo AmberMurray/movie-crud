@@ -29,10 +29,10 @@ exports.seed = function(knex) {
         my_rating: 10,
         poster_url: 'https://images8.alphacoders.com/398/398379.png'
       }
-    ]);
+    ])
   }).then (() => {
     return knex.raw(
-      "SELECT setval('movies_id_seq', (SELECT MAX(id) FROM movies));"
-    );
-  });
-};
+      "SELECT setval('movies_id_seq', (SELECT MAX(id) FROM movies))"
+    )
+  })
+}

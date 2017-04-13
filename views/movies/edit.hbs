@@ -1,0 +1,28 @@
+<!-- Edit a movie form page -->
+<br></br>
+<h1>Edit {{movie.title}}</h1>
+<form method="POST" action="/movies/{{ movie.id }}?_method=PUT" class='container col-md-6 col-md-offset-3 well'>
+  <div class="form-group">
+    <label for="name">Title</label>
+    <input name="title" type="text" id="title" class="form-control" value="{{ movie.title }}">
+  </div>
+  <div class="form-group">
+    <label for="image">Director</label>
+    <input name='director' id="director" type="text" class="form-control" value="{{ movie.director }}">
+  </div>
+  <div class="form-group">
+    <label for="item">Year</label>
+    <input name="year" id="year" type="text" class="form-control" value = "{{movie.year}}">
+  </div>
+  <div class="form-group">
+    <label for="item">Rating</label>
+    <input name="my_rating" id="item" min = '0' max = '10' type="text" class="form-control" value = "{{ movie.my_rating }}">
+  </div>
+  <div class="form-group">
+    <label for="item">Poster</label>
+    <input name="poster_url" id="poster_url" type="text" class="form-control" value ='{{movie.poster_url}}'>
+  </div>
+  <div class="form-group">
+    <input id="submit" type="submit">
+  </div>
+</form>

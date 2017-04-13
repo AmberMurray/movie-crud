@@ -1,3 +1,8 @@
+General notes:
+when you use res.render you can pass a template and an object to it
+when you use res.redirect you tell it which page to show via the url
+these both look the same (path vs. url), but you need to try and keep them straight
+
 Commit often with detailed notes!!
 -----------------------------------------------------------------------------
 
@@ -38,7 +43,19 @@ this file connects knex to the database, it's also sometimes called knex.js or i
 
 -----------------------------------------------------------------------------
 
-ROUTES FOLDER
+PUBLIC FOLDER
+the route to this folder is ./and then whatever folder/and then whatever file name (./images/dino.png)
+
+check the app.js file...
+`app.use(express.static(path.join(__dirname, 'public')))`
+this says concat the directory to the public folder and then something
+
+-----------------------------------------------------------------------------
+
+
+ROUTES FOLDER -
+the api routes to do a verb (GET, POST, PUT, DELETE)
+you should have routes set up per resource, or per path
 
 index.js
 add required connections
@@ -73,13 +90,37 @@ res.render('movies/index', {movies: movieStr})`
 
 the code i've used doesn't need stringify because hb is iterating over the data and converting it for us
 
+get a single movie
+the first() says grab the first thing (in this case an object) where the id passed in is equal to the id in the db, and then render the show single movie page
 
+--post--
+router.post('/', (req, res, next) {
+  let movie = {
+    title: req.body.title,
+    director: req.body.director,
+    year: req.body.year,
+    my_rating: req.body['my_rating'],
+    poster_url: req.body['poster_url']
+  }
+  db('movies').insert(movie).then(() => {
+    res.json({body:req.body})
+  })
+})
+
+insert takes 2 arguments - the thing you want to post, and * - and you can see the new thing the user is trying to add in an array (it's an array with an object in it). you can select other keys from the object instead of using * as well.
 
 -----------------------------------------------------------------------------
 
 VIEWS FOLDER
 
 MOVIES SUB-FOLDER
+
+add.hbs
+i copied over the form from marioparty (ugh)
+forms, by default, just do get requests
+we added name='' to each input field so that when the submit button is clicked the fields will append to the url as query parameters
+
+in the form element we set method to POST, action to the path where the post is happening
 
 index.hbs
 
@@ -115,6 +156,8 @@ this page houses all the error views. it can be customized as needed.
 -----------------------------------------------------------------------------
 
 app.js
+why is is useful?
+this is the backbone of the app - one place that manages everything that all the other files branch from. it's like the manifest (or blueprint for the app) for the server. app.js is the pipeline for the entire request.
 
 we commented out cookieParser because it's a default of express-generator, but we didn't need it for this project
 likewise, we removed all references to users since we aren't dealing with users in this app. both are defaults to express-generator
@@ -129,7 +172,7 @@ knexfile.js
 add required connections  -
 path
 
-this file is our config file for knex. it specifies the db type - postgres - where the db path is on our local machine: postgres://localhost/database_name
+this file is our config file for knex to the database. it specifies the db type - postgres - where the db path is on our local machine: postgres://localhost/database_name
 
 it also sets up the migrations folder to live under the db folder and to put all the migrations files inside it. it uses path.join to concat the path as needed by mac or pc.
 
